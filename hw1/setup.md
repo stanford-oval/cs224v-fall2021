@@ -7,7 +7,13 @@ You will be responsible for creating and managing (starting, stopping) the VM in
 
 It is recommended to create a CPU+GPU instance, using an NVidia V100 GPU (~$2/hour).
 
-We recommend using the Oregon (us-west-1) region, as it slightly cheaper and includes a larger set of available machine types, but any North American region should work. See detailed instructions and a tutorial for GCP [here](https://github.com/cs231n/gcloud).
+We recommend using the Oregon (us-west-1) region, as it slightly cheaper and includes a larger set of available machine types, but any North American region should work. See detailed instructions and a tutorial for GCP [here](./google-cloud.md).
 
 ## Genie Environment 
-To install the dependencies for the Genie toolkit, clone this repository and run `hw1/install.sh`. You will need to logout and login again to load the corresponding commands.
+To install the dependencies for the Genie toolkit, clone this repository and run the following command 
+```bash
+cd hw1
+chmod +x install.sh
+./install.sh
+```
+You might need to run You will need to logout and login again to load the corresponding commands.
