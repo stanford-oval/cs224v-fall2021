@@ -35,7 +35,7 @@ annotate_flags ?= $($(annotation)_annotate_flags)
 datadir = datadir
 
 csqa_filter = "ques_type_id=1,2"
-valid_size ?= 2000
+valid_size ?= 500
 
 valid_set ?= valid
 eval_set ?= eval
@@ -50,13 +50,13 @@ synthetic_flags ?= \
 annotate_with_entity_id = false
 generate_flags = $(foreach v,$(synthetic_flags),--set-flag $(v)) $(if $(annotate_with_entity_id),--set-flag entity_id,)
 custom_generate_flags ?=
-pruning_size ?= 1000
+pruning_size ?= 25
 mindepth ?= 6
 maxdepth ?= 8
 
 # options for training
 model ?= 1
-train_iterations ?= 30000
+train_iterations ?= 10000
 train_save_every ?= 2000
 train_log_every ?= 100
 train_nlu_flags ?= \
