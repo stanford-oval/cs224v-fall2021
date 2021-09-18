@@ -143,10 +143,9 @@ We will use *Deep Learning VM* from GCP's marketplace. This will create a VM wit
 
 1. Go to [this Google Cloud Marketplace page](https://console.cloud.google.com/marketplace/config/click-to-deploy-images/tensorflow). You may be taken to a page where you have to click on *Launch*, and then you should see a configuration sheet titled *New Deep Learning VM deployment*.
 1. Fill in `Deployment name` field with your preferred VM name.
-2. In `zone` choose `us-west1-*`.
-3. In `Machine type` box, click `GPU`.
-4. For `GPU type`, we recommend `NVIDIA Tesla V100`. Check the price on the right side of the page, it should be around $2 per hour. Check [pricing and spec for GCP GPUs](https://cloud.google.com/compute/gpus-pricing) for more details. 
-GPU drivers and CUDA will be automatically installed if you select at least 1 GPU.
+2. In `Zone`, choose one of the following: `us-west1-b`, `us-central1-a`, `us-central1-c`, `us-central1-b`.
+3. Under `Machine type`, choose `GPU` as the `Machine family`.
+4. For `GPU type`, we recommend `NVIDIA Tesla V100`. It should cost around $2 per hour. Check [pricing and spec for GCP GPUs](https://cloud.google.com/compute/gpus-pricing) for more details.
 5. For `Machine type`, we recommend `n1-standard-8` which has 8 vCPUs and 30 GB memory.
 6. In `Frameworks` field, change to `PyTorch 1.9 (CUDA 11.0)`.
 7. Check the box `Install NVIDIA GPU driver automatically on first startup?`.
@@ -156,13 +155,13 @@ GPU drivers and CUDA will be automatically installed if you select at least 1 GP
 Pay attention to the monthly price, make sure you claim only necessary HW resources, so that you can use your GCP instance for longer. 
 **Once you run out of credits, the VM instance will be shut down automatically and you might lose unsaved data and models.** If you are almost running out of credits, contact the course staff.
 
-After deploying a VM, especially if it has a GPU, you might encounter an error message *The zone "zone" does not have enough resources available to fulfill the request.* You can delete the deployment and go back to choose another zone or try again in a few minutes. You can also try *NVIDIA Tesla A100* (more powerful and expensive) or *NVIDIA Tesla P100* GPUs (cheaper and easier to find), and either train your models with them or change it to a V100 GPU later. 
+After deploying a VM, you might encounter an **error message saying the zone does not have enough resources available to fulfill the request**. You can delete the deployment and go back to choose another zone or try again in a few minutes. You can also try **NVIDIA Tesla P100** GPUs which is cheaper and easier to find, and either train your models with them or change it to a V100 GPU later. If the error persists, you can choose a weaker GPU option such as K80, T4, and P4. But make sure to switch to V100 or P100 when you need to run the training step in the homework. 
 
 You can always change number of CPUs, number of GPUs, CPU memory, and GPU type even after your VM has been created.
 Just stop your instance, go to your VM instance's details at *Compute Engine > VM instances* > [click on instance name]. 
 Click *Edit* on your VM's page to modify the settings. Finally click *Save*.
 
-Wait until the deployment is finished. You should see a running VM with a green checkmark next to it on your [Compute Engine page](https://console.cloud.google.com/compute/).
+Wait until the deployment is finished. You should see a running VM with a green checkmark next to it on your [Compute Engine page](https://console.cloud.google.com/compute/). **Stop the instance now** - we need to change a few more settings. 
 
 ### Configure Networking
 
@@ -193,7 +192,7 @@ If `gcloud` command is not in your system path after installation, you can also 
 To ssh into your VM, go to your VM instance details page by clicking on its name. Start the VM instance first. Once it has a green check mark on, click on the drop-down arrow and select `View gcloud command` instead to retrieve the terminal command. It should look like
 
 ```bash
-gcloud compute --project "<YOUR_PROJECT_ID>" ssh --zone "us-west1-b" "<YOUR_VM_NAME>"
+gcloud compute --project "<YOUR_PROJECT_ID>" ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>"
 ```
 
 <center><img src="img/connect-to-vm.png" width="600"></center>

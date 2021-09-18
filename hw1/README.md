@@ -3,11 +3,26 @@
 In this homework, you will learn to use Genie and build a question-answering skill for a Wikidata domain of your choice. 
 
 We want all students to have hands-on experience in training a large neural network.  (No prior knowledge in machine learning is assumed.)  
-Simply running every command once may take more than XX hours.
+Simply running every command once may take about 3 hours.
 **Please start early and budget your time accordingly!**
 
 ## Setup 
-Follow the [setup guide](setup.md) to install Genie toolkit and its dependencies on Google Cloud Platform. 
+
+### Google Cloud Platform
+This homework requires access to significant compute resources. We recommend to run **all steps** in Google Cloud Platform. All students should have received a Google Cloud Platform coupon for this class via email. The email includes instructions to redeem your coupon and apply it to your personal GCP account.
+**Follow this detailed [instructions](./google-cloud.md) to setup your VM.**
+
+You will be responsible for creating and managing (starting, stopping) the VM instances used by this homework. You will be billed while the instances are running (and you will be responsible for charges beyond the coupon) so make sure you turn off any VM instance you are not using.
+
+### Genie Environment 
+To install the dependencies for the Genie toolkit, clone this repository and run the following command 
+```bash
+git clone https://github.com/stanford-oval/cs224v-fall2021.git
+cd cs224v-fall2021/hw1
+chmod +x install.sh
+# this step takes about 3 minutes 
+./install.sh
+```
 
 Since both the synthesis and training will takes a long time to finish, we recommend to run everything using a terminal multiplexer such as [screen](https://www.gnu.org/software/screen/) and [tmux](https://github.com/tmux/tmux/wiki). A cheatsheet for use them can be found [here](multiplexers.md). 
 
@@ -17,8 +32,9 @@ Sign up for a domain at [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKP
 experiment ?= ${domain} 
 ```
 
-After setting up the domain, run the following command to synthesize data:
+After setting up the domain, run the following command to synthesize data (~1h):
 ```bash
+# this step takes about 1 hour
 make datadir 
 ```
 
@@ -30,8 +46,9 @@ Check the manifest to learn about what are the properties available for the doma
 Also Check `datadir/train.tsv` to see how the synthesized training examples look. 
 
 ## Train a Semantic Parser 
-To train a parser, simply run the following command 
+To train a parser, simply run the following command
 ```bash
+# the training takes about 1-2 hours
 make train
 ```
 
