@@ -86,8 +86,10 @@ add_path "$HOME/.yarn/bin"
 
 if which pip >/dev/null 2>&1 && grep -qE "ID(_LIKE)?=.*debian.*" /etc/os-release ; then
 	PIP=pip
+	PYTHON=python
 else
 	PIP=pip3
+	PYTHON=python3
 fi
 
 
@@ -104,5 +106,6 @@ if ! test -d genienlp ; then
 	pushd genienlp
 	${PIP} install --user -e .
 	${PIP} install tensorboard
+	${PYTHON} -m spacy download en_core_web_sm
 	popd
 fi
