@@ -80,7 +80,7 @@ common-words.txt:
 
 models/paraphraser-bart-large-speedup-megabatch-5m:
 	mkdir -p models
-	wget --no-verbose https://almond-static.stanford.edu/test-data/paraphraser-bart-large-speedup-megabatch-5m.tar.xz
+	wget --no-verbose https://almond-static.stanford.edu/research/schema2qa2.0/paraphraser-bart-large-speedup-megabatch-5m.tar.xz
 	tar -C models -xvf paraphraser-bart-large-speedup-megabatch-5m.tar.xz
 
 emptydataset.tt:
