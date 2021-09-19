@@ -15,12 +15,11 @@ This homework requires access to significant compute resources. We recommend to 
 You will be responsible for creating and managing (starting, stopping) the VM instances used by this homework. You will be billed while the instances are running (and you will be responsible for charges beyond the coupon) so make sure you turn off any VM instance you are not using.
 
 ### Genie Environment 
-To install the dependencies for the Genie toolkit, clone this repository and run the following command 
+To install the dependencies for the Genie toolkit, clone this repository and run the following command (takes about 3 minutes)
 ```bash
 git clone https://github.com/stanford-oval/cs224v-fall2021.git
 cd cs224v-fall2021/hw1
 chmod +x install.sh
-# this step takes about 3 minutes 
 ./install.sh
 ```
 
@@ -32,9 +31,8 @@ Sign up for a domain at [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKP
 experiment ?= ${domain} 
 ```
 
-After setting up the domain, run the following command to synthesize data (~1h):
+After setting up the domain, run the following command to synthesize data (takes about 1 hour):
 ```bash
-# this step takes about 1 hour
 make datadir 
 ```
 
@@ -48,9 +46,9 @@ Also Check `datadir/train.tsv` to see how the synthesized training examples look
 ## Train a Semantic Parser 
 To train a parser, simply run the following command
 ```bash
-# the training takes about 1-2 hours
 make train
 ```
+This takes about 1 hour with V100/P100 GPU, and 4 hours with K80.
 
 This will take about XX hours.  You can start a tensorboard with `tensorboard --logdir ${domain}/models --bind_all` (replace `${domain}` with your domain name) to monitor the training. 
 
