@@ -31,12 +31,11 @@ Sign up for a domain at [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKP
 experiment ?= ${domain} 
 ```
 
-After setting up the domain, run the following command to synthesize data (takes about 1 hour):
+After setting up the domain, run the following command to synthesize data:
 ```bash
 make datadir 
 ```
-
-The synthesis will take about XX hours depending on the domain. 
+The synthesis will take about 1 hours depending on the domain. 
 
 It will generate (1) the manifest, `${domain}/manifest.tt`, containing the schema of the domain, including entities involved, all properties and their natural language annotations; (2) a parameter dataset for augmentation, under `${domain}/parameter-dataset`; and (3) a dataset in `datadir`, containing the training set generated based on the manifest and augmented by the parameter dataset, and a valid/eval set, converted from simple questions in CSQA. 
 
@@ -49,8 +48,12 @@ To train a parser, simply run the following command
 make train
 ```
 This takes about 1 hour with V100/P100 GPU, and 4 hours with K80.
-
-This will take about XX hours.  You can start a tensorboard with `tensorboard --logdir ${domain}/models --bind_all` (replace `${domain}` with your domain name) to monitor the training. 
+You can start a tensorboard with `tensorboard --logdir ${domain}/models` (replace `${domain}` with your domain name) to monitor the training. 
+Once tensorboard is running in the VM. Run the following command on your PC to port forward tensorboard:
+```bash
+gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 6006:localhost:6006
+```
+Now you can open tensorboard in your browser: http://localhost:6006/.
 
 ## Evaluate the Semantic Parser
 TODO: a command line tool that connect to wikidata query service and test the model by typing in questions.
