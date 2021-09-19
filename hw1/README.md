@@ -10,7 +10,7 @@ Simply running every command once may take about 3 hours.
 
 ### Google Cloud Platform
 This homework requires access to significant compute resources. We recommend to run **all steps** in Google Cloud Platform. All students should have received a Google Cloud Platform coupon for this class via email. The email includes instructions to redeem your coupon and apply it to your personal GCP account.
-**Follow this detailed [instructions](./google-cloud.md) to setup your VM.**
+**Follow this detailed [instructions](./instructions/google-cloud.md) to setup your VM.**
 
 You will be responsible for creating and managing (starting, stopping) the VM instances used by this homework. You will be billed while the instances are running (and you will be responsible for charges beyond the coupon) so make sure you turn off any VM instance you are not using.
 
@@ -23,7 +23,7 @@ chmod +x install.sh
 ./install.sh
 ```
 
-Since both the synthesis and training will takes a long time to finish, we recommend to run everything using a terminal multiplexer such as [screen](https://www.gnu.org/software/screen/) and [tmux](https://github.com/tmux/tmux/wiki). A cheatsheet for use them can be found [here](multiplexers.md). 
+Since both the synthesis and training will takes a long time to finish, we recommend to run everything using a terminal multiplexer such as [screen](https://www.gnu.org/software/screen/) and [tmux](https://github.com/tmux/tmux/wiki). A cheatsheet for use them can be found [here](./instructions/multiplexers.md). 
 
 ## Data Synthesis
 Sign up for a domain at [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKPKvCtNV9kYschN7cnlKt03az9k3zSASa9tw/edit?usp=sharing), and edit the Makefile to set `experiment` to the domain you signed up for at line 8 as follows:
