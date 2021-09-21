@@ -30,6 +30,7 @@ Sign up for a domain at [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKP
 ```make
 experiment ?= ${domain} 
 ```
+Make sure the domain name is **lower cased**. 
 
 After setting up the domain, run the following command to synthesize data:
 ```bash
@@ -41,6 +42,8 @@ It will generate (1) the manifest, `${domain}/manifest.tt`, containing the schem
 
 Check the manifest to learn about what are the properties available for the domain, and how are they annotated (using the syntax `canonical=#[]`). How is the quality of the automatically generated annotations? 
 Also Check `datadir/train.tsv` to see how the synthesized training examples look. 
+
+If you want to rerun this step, make sure to run `make clean` first. Otherwise, `make` will not regenerate files already exist. 
 
 ## Train a Semantic Parser 
 To train a parser, simply run the following command
@@ -62,6 +65,8 @@ Note, since CSQA containing no numeric fields, any question with numbers, dates,
 ```bash
 make evaluate
 ```
+
+Note: to reduce cost and time, we are generating a relatively small dataset (10K~20K examples) in this homework, and train for only 10K iterations. In theory, we can synthesize as much data as possible and train for more iterations, which will give us a few percent of improvement on accuracy. 
 
 ## Submission
 Each student should submit a text file on Canvas, and include the following: 
