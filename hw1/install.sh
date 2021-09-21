@@ -82,7 +82,6 @@ add_path() {
 }
 
 add_path "$HOME/.local/bin"
-add_path "$HOME/.yarn/bin"
 
 if which pip >/dev/null 2>&1 && grep -qE "ID(_LIKE)?=.*debian.*" /etc/os-release ; then
 	PIP=pip
@@ -108,4 +107,21 @@ if ! test -d genienlp ; then
 	${PIP} install tensorboard
 	${PYTHON} -m spacy download en_core_web_sm
 	popd
+fi
+
+if ! test -d almond-server ; then
+	git clone https://github.com/stanford-oval/almond-server
+	pushd almond-server >/dev/null
+	npm link genie-toolkit
+	npm install
+	popd
+fi
+
+if ! test -d ./.home ; then
+	mkdir .home
+	cat > .home/prefs.db <<EOF
+{
+  "developer-dir": "${PWD}/devices"
+}
+EOF
 fi

@@ -1,0 +1,15 @@
+.home
+.embeddings
+
+genie-toolkit
+genienlp
+almond-server
+
+devices/node_modules
+devices/org.wikidata/manifest.tt
+devices/org.wikidata/entities.json
+devices/org.wikidata/dataset.tt
+
+
+city
+country
