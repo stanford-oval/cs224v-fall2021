@@ -53,6 +53,9 @@ custom_generate_flags ?=
 pruning_size ?= 25
 mindepth ?= 6
 maxdepth ?= 8
+fewshot = true
+fewshot_size = 100
+
 
 # options for training
 model ?= 1
@@ -114,6 +117,11 @@ raw/wikidata:
 	wget --no-verbose https://almond-static.stanford.edu/research/csqa/kb/wikidata_short_2.json -P $@
 	wget --no-verbose https://almond-static.stanford.edu/research/csqa/kb/items_wikidata_n.json -P $@
 
+raw/csqa/train:
+	mkdir -p raw/csqa
+	wget --no-verbose https://almond-static.stanford.edu/research/csqa/train.tar.xz
+	tar -C raw/csqa -xf train.tar.xz
+
 raw/csqa/valid:
 	mkdir -p raw/csqa
 	wget --no-verbose https://almond-static.stanford.edu/research/csqa/valid.tar.xz
@@ -169,6 +177,7 @@ $(experiment)/manifest.tt: $(experiment)/constants.tsv $(experiment)/wikidata.tt
 	  --parameter-datasets $(experiment)/parameter-datasets.tsv \
 	  --dataset wikidata \
 	  $(annotate_flags) \
+	  --batch-size 32 \
 	  --debug
 	mv $@.tmp $@
 
@@ -186,6 +195,31 @@ $(experiment)/synthetic-d%.tsv: $(experiment)/manifest.tt $(dataset_file)
 
 $(experiment)/synthetic.tsv : $(foreach v,1 2 3,$(experiment)/synthetic-d$(mindepth)-$(v).tsv) $(experiment)/synthetic-d$(maxdepth).tsv
 	cat $^ > $@
+	
+# csqa training set converted as few shot
+$(experiment)/csqa-train.tsv: $(experiment)/wikidata.tt $(csqa_dir)/train $(wikidata_dir)/filtered_property_wikidata4.json domains.tsv 
+	$(genie) wikidata-convert-csqa \
+	  --domains domains.tsv \
+	  --thingpedia $(experiment)/wikidata.tt \
+	  --input $(csqa_dir)/train \
+	  --output $@\
+	  --wikidata-property-list $(wikidata_dir)/filtered_property_wikidata4.json \
+	  --items $(experiment)/items.json \
+	  --values $(experiment)/values.json \
+	  --types $(experiment)/types.json \
+	  --filtered-examples $(experiment)/train.json \
+	  $(if $(annotate_with_entity_id),--entity-id,)
+
+$(experiment)/csqa-train-typechecked.tsv: $(experiment)/wikidata.tt $(experiment)/csqa-train.tsv
+	$(genie) typecheck \
+	  -o $@ \
+	  --dropped $(experiment)/csqa-train-dropped.tsv \
+	  --thingpedia $(experiment)/wikidata.tt \
+	  $(if $(annotate_with_entity_id),--entity-id,) \
+	  $(experiment)/csqa-train.tsv
+
+$(experiment)/fewshot.tsv: $(experiment)/csqa-train-typechecked.tsv
+	head -$(fewshot_size) $(experiment)/csqa-train-typechecked.tsv > $(experiment)/fewshot.tsv
 
 $(experiment)/augmented.tsv : $(experiment)/manifest.tt $(experiment)/synthetic.tsv $(experiment)/parameter-datasets.tsv $(if $(fewshot),$(experiment)/fewshot.tsv,)
 	$(genie) augment -o $@.tmp -l en-US \
