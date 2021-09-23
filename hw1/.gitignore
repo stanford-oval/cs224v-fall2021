@@ -5,11 +5,30 @@ genie-toolkit
 genienlp
 almond-server
 
+raw
+models
+domains.tsv
+emptydataset.tt
+
 devices/node_modules
 devices/org.wikidata/manifest.tt
 devices/org.wikidata/entities.json
 devices/org.wikidata/dataset.tt
 
-
+# domain folders
 city
 country
+tv
+disease
+human
+art
+song
+game
+organization
+music_band
+
+# intermediate files
+common-words.txt 
+bootleg*.json
+paraphraser-in.*
+paraphraser-out.*

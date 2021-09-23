@@ -176,9 +176,7 @@ $(experiment)/manifest.tt: $(experiment)/constants.tsv $(experiment)/wikidata.tt
 	  --entities ${experiment}/entities.json \
 	  --parameter-datasets $(experiment)/parameter-datasets.tsv \
 	  --dataset wikidata \
-	  $(annotate_flags) \
-	  --batch-size 32 \
-	  --debug
+	  $(annotate_flags) 
 	mv $@.tmp $@
 
 $(experiment)/synthetic-d%.tsv: $(experiment)/manifest.tt $(dataset_file)
