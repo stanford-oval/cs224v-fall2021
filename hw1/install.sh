@@ -116,12 +116,3 @@ if ! test -d almond-server ; then
 	npm install
 	popd
 fi
-
-if ! test -d ./.home ; then
-	mkdir .home
-	cat > .home/prefs.db <<EOF
-{
-  "developer-dir": "${PWD}/devices"
-}
-EOF
-fi
