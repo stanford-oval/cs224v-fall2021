@@ -35,6 +35,22 @@
 const Tp = require('thingpedia');
 const ThingTalk = require('thingtalk');
 
+function groupResultById(results) {
+    const grouped = {};
+    for (const result of results) {
+        if (!(result.id.value in grouped))
+            grouped[result.id.value] = { id: result.id };
+        for (const [property, value] of Object.entries(result)) {
+            if (property === 'id')
+                continue;
+            if (!(property in grouped[result.id.value]))
+                grouped[result.id.value][property] = []; // all entities are array 
+            grouped[result.id.value][property].push(value)
+        }
+    }
+    return Object.values(grouped);
+}
+
 module.exports = class WikidataDevice extends Tp.BaseDevice {
     constructor(engine, state) {
         super(engine, state);
@@ -46,25 +62,33 @@ module.exports = class WikidataDevice extends Tp.BaseDevice {
     async query(query) {
         const sparql = ThingTalk.Helper.toSparql(query);
         if (!sparql)
-            throw new Error(`Failed to convert query "${query.prettyprint()}", got ${sparql}`); //"
+            throw new Error(`Failed to convert query "${query.prettyprint()}", got ${sparql}`); 
+        
+        console.log('====')
+        console.log('SPARQL query:')
+        console.log(sparql);
+        console.log('====')
         return Tp.Helpers.Http.get(`${this.url}?query=${encodeURIComponent(sparql)}`, {
             accept: 'application/json'
         }).then((result) => {
             const parsed = JSON.parse(result).results.bindings;
-            return parsed.map((r) => {
+            console.log('Raw result from Wikidata:')
+            console.log(parsed);
+            const preprocessed = parsed.map((r) => {
                 const res = {};
                 Object.keys(r).filter((key) => !key.endsWith('Label')).forEach((key) => {
                     let value = r[key].value;
                     if (value.startsWith('http://www.wikidata.org/entity/')) {
                         let id = value.slice('http://www.wikidata.org/entity/'.length);
-                        value = r[key + 'Label'].value;
-                        res[key] = new Tp.Value.Entity(id, value);
+                        value = r[key + 'Label'] ? r[key + 'Label'].value : null;
+                        res[key] = { value: id, display: value };
                     } else {
                         res[key] = value;
                     }
                 });
                 return res;
             });
+            return groupResultById(preprocessed);
         });
     }
 };
