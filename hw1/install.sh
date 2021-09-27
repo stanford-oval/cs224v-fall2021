@@ -112,7 +112,7 @@ fi
 if ! test -d almond-server ; then
 	git clone https://github.com/stanford-oval/almond-server
 	pushd almond-server >/dev/null
-	npm link genie-toolkit
+	git checkout wip/wikidata-csqa
 	npm install
 	popd
 fi
