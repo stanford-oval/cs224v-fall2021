@@ -165,7 +165,7 @@ Wait until the deployment is finished. You should see a running VM with a green 
 
 ### Configure Networking
 
-You need to tweak a few more settings to enable remote access to Tensorboard plots on your CPU+GPU VM.
+You need to tweak a few more settings to enable remote access to Tensorboard plots on your VM.
 
 1. You must stop the instance first.
 2. Go to [Firewall config page](https://console.cloud.google.com/networking/firewalls).

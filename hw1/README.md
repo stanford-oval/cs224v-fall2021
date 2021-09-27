@@ -59,14 +59,37 @@ gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 6006:localhost:
 Now you can open tensorboard in your browser: http://localhost:6006/.
 
 ## Evaluate the Semantic Parser
-TODO: a command line tool that connect to wikidata query service and test the model by typing in questions.
-
-Note, since CSQA containing no numeric fields, any question with numbers, dates, measurements won't work. 
+To check the accuracy of the trained model over the validation set of CSQA, run 
 ```bash
 make evaluate
 ```
+After evaluation is done, you will have two files:
+- `./${domain}/eval/1.results: short file in CSV form containing accuracy
+- `./${domain}/eval/1.debug: the error analysis file which compares the output of the model with the gold annotation, and reports all the errors
+
+See [instructions/eval-metrics.md](instructions/eval-metrics.md) for details of these files.
 
 Note: to reduce cost and time, we are generating a relatively small dataset (10K~20K examples) in this homework, and train for only 10K iterations. In theory, we can synthesize as much data as possible and train for more iterations, which will give us a few percent of improvement on accuracy. 
+
+## Question Answering with Your Model
+Now it's time to test your model for real. 
+Run the following command to start a server that will continuously run the trained model in inference mode:
+```bash
+./run-nlu-server.sh --domain ${domain} --nlu-model 1
+```
+
+Then in a separate tab/session, run:
+```bash
+./run-almond.sh --domain ${domain}
+```
+
+This will start an Almond server at port 3000. Similar to tensorboard, you can port forward it
+by running the following command in your local PC:
+```bash
+gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:3000
+```
+
+You can now ask questions to your model at http://127.0.0.1:3000. Follow the configuration instructions, then click on Conversation to access the dialogue agent. 
 
 ## Submission
 Each student should submit a text file on Canvas, and include the following: 
