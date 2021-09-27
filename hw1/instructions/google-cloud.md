@@ -138,9 +138,9 @@ We will use *Deep Learning VM* from GCP's marketplace. This will create a VM wit
 
 1. Go to [this Google Cloud Marketplace page](https://console.cloud.google.com/marketplace/config/click-to-deploy-images/tensorflow). You may be taken to a page where you have to click on *Launch*, and then you should see a configuration sheet titled *New Deep Learning VM deployment*.
 1. Fill in `Deployment name` field with your preferred VM name.
-2. In `Zone`, choose one of the following: `us-west1-b`, `us-central1-a`, `us-central1-c`, `us-central1-b`.
+2. In `Zone`, we recommend `europe-west4-*` because the GPU availability in US servers (e.g., `us-west1-b`, `us-central1-a`) has not been great when we test it. In practice, any server that provides V100/P100/A100 GPU would work, the only difference would be [latency](https://gcping.com/).
 3. Under `Machine type`, choose `GPU` as the `Machine family`.
-4. For `GPU type`, we recommend `NVIDIA Tesla V100`. It should cost around $2 per hour. Check [pricing and spec for GCP GPUs](https://cloud.google.com/compute/gpus-pricing) for more details.
+4. For `GPU type`, we recommend `NVIDIA Tesla V100`. It should cost around $2 per hour. P100 (cheaper and slight weaker) and A100 (more expensive, more powerful) also work. Check [pricing and spec for GCP GPUs](https://cloud.google.com/compute/gpus-pricing) for more details.
 5. For `Machine type`, we recommend `n1-standard-8` which has 8 vCPUs and 30 GB memory.
 6. In `Frameworks` field, change to `PyTorch 1.9 (CUDA 11.0)`.
 7. Check the box `Install NVIDIA GPU driver automatically on first startup?`.
@@ -150,9 +150,9 @@ We will use *Deep Learning VM* from GCP's marketplace. This will create a VM wit
 Pay attention to the monthly price, make sure you claim only necessary HW resources, so that you can use your GCP instance for longer. 
 **Once you run out of credits, the VM instance will be shut down automatically and you might lose unsaved data and models.** If you are almost running out of credits, contact the course staff.
 
-After deploying a VM, you might encounter an **error message saying the zone does not have enough resources available to fulfill the request**. You can delete the deployment and go back to choose another zone or try again in a few minutes. You can also try **NVIDIA Tesla P100** GPUs which is cheaper and easier to find, and either train your models with them or change it to a V100 GPU later. If the error persists, you can choose a weaker GPU option such as K80, T4, and P4. But make sure to switch to V100 or P100 when you need to run the training step in the homework. 
+After deploying a VM, you might encounter an **error message saying the zone does not have enough resources available to fulfill the request**. You can delete the deployment and go back to choose another zone or try again in a few minutes. If you could not to find any server with P100/V100/A100 that works, you can choose a weaker GPU option such as K80 to start and switch to a better one later at training step. You can also just use K80 to train the model, it's significantly cheaper, but it will take about 4 hours to train instead of 1 hour. 
 
-You can always change number of CPUs, number of GPUs, CPU memory, and GPU type even after your VM has been created.
+You can always change number of CPUs, number of GPUs, CPU memory, and GPU type after your VM has been created.
 Just stop your instance, go to your VM instance's details at *Compute Engine > VM instances* > [click on instance name]. 
 Click *Edit* on your VM's page to modify the settings. Finally click *Save*.
 
