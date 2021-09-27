@@ -79,7 +79,7 @@ Note: to reduce cost and time, we generate a relatively small dataset (10K~20K e
 Now it's time to test your model for real. 
 Run the following command to start a server that will continuously run the trained model in inference mode:
 ```bash
-./run-nlu-server.sh --domain ${domain} --nlu-model 1
+./run-nlu-server.sh --domain ${domain} --nlu_model 1
 ```
 
 Then in a separate tab/session, run:
