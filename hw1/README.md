@@ -19,7 +19,6 @@ To install the dependencies for the Genie toolkit, clone this repository and run
 ```bash
 git clone https://github.com/stanford-oval/cs224v-fall2021.git
 cd cs224v-fall2021/hw1
-chmod +x install.sh
 ./install.sh
 ```
 
@@ -89,12 +88,11 @@ by running the following command in your local PC:
 gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:3000
 ```
 
-You can now ask questions to your model at http://127.0.0.1:3000. Follow the configuration instructions, then click on Conversation to access the dialogue agent. 
+You can now ask questions to your model at http://127.0.0.1:3000. Follow the configuration instructions, then click on Conversation to access the dialogue agent.
 
 ## Submission
 Each student should submit a text file on Canvas, and include the following: 
 - The domain you chose
-- The training accuracy 
-- At least 10 commands you've tried with their thingtalk output and answer returned. 
-- Check the synthetic training set produced by Genie and based on evaluation result, write a short paragraph describing the issues you have observed and potential ways to improve. 
+- The accuracy of your model 
+- At least 5 commands you've tried with their nlu server log. 
 
