@@ -59,15 +59,11 @@ module.exports = class WikidataDevice extends Tp.BaseDevice {
         this.url = 'https://query.wikidata.org/sparql';
     }
 
-    async query(query) {
-        const sparql = ThingTalk.Helper.toSparql(query);
-        if (!sparql)
-            throw new Error(`Failed to convert query "${query.prettyprint()}", got ${sparql}`); 
-        
-        console.log('====')
+    async _request(sparql) {
+        console.log('====');
         console.log('SPARQL query:')
         console.log(sparql);
-        console.log('====')
+        console.log('====');
         return Tp.Helpers.Http.get(`${this.url}?query=${encodeURIComponent(sparql)}`, {
             accept: 'application/json'
         }).then((result) => {
@@ -90,5 +86,19 @@ module.exports = class WikidataDevice extends Tp.BaseDevice {
             });
             return groupResultById(preprocessed);
         });
+    }
+
+    async query(query) {
+        let sparql = ThingTalk.Helper.toSparql(query, { priority: 'speed' });
+        if (!sparql)
+            throw new Error(`Failed to convert query "${query.prettyprint()}", got ${sparql}`); 
+        const answer = await this._request(sparql);
+        if (answer.length > 0)
+            return answer;
+            
+        // fast query failed to find answer, try the slower query 
+        sparql = ThingTalk.Helper.toSparql(query, { priority: 'coverage' });
+        return this._request(sparql);
+        
     }
 };
