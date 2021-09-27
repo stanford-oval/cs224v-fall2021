@@ -60,7 +60,7 @@ fewshot_size = 100
 # options for training
 model ?= 1
 train_iterations ?= 10000
-train_save_every ?= 2000
+train_save_every ?= 1000
 train_log_every ?= 100
 train_nlu_flags ?= \
 	--model TransformerSeq2Seq \
