@@ -105,20 +105,15 @@ Your account by default has a quota of 0 GPUs. You have to explicitly request Go
 
 **Please request the quota increase ASAP**, because it might take some time to process. If you do not have GPU quota, you can get started by a CPU-only VM first and change the configuration later. The first half of the homework (synthesis) should be okay using a CPU-only VM.
 
-Notice there are two kinds of GPU quota that you will need to adjust:
-
-1. You should first change your quota of *GPU (all regions)*.  Filter the *Metric* to be *GPU (all regions)*, *Location*  to be *Global*.
-Then select *Edit Quotas* and request an increase to 1 GPU (you will need 1 GPU at any given time).
+Navigate to the *Quotas* page under *IAM & Admin*, add filter `GPUs (all regions)`, and select the service listed.
+Select *Edit Quotas* and request an increase to 1 GPU (you will need 1 GPU at any given time).
+If no such service can be found, see the [instruction below](#why-dont-i-see-any-gpu-related-quotas)
 
 <center><img src="img/gpu-all-regions.png" width="600"></center>
 
 Wait until GCP send you a second email (first email is just to notify they receive the request). It will look like this. It could take couple minutes to couple days for them to approve your request.
 
 <center><img src="img/gpu-quota-approved.png" width="600"></center>
-
-2. You should adjust your region-specific GPU (usually it is already 1 by default) if you want more than 1 GPU in a VM instance for multi-GPU training or have multiple GPU VMs in a certain region (not applicable for the assignment). You can filter by the *Metric* and *Location* to set the type of GPU and your region.
-
-<center><img src="img/gpu-region.png" width="600"></center>
 
 ### Why don't I See Any GPU-related Quotas
 
