@@ -68,15 +68,16 @@ To check the accuracy of the trained model over the evaluation set of CSQA, run
 make evaluate
 ```
 After the evaluation finishes, you will have two files:
-- `./${domain}/eval/1.results: short file in CSV form containing accuracy
-- `./${domain}/eval/1.debug: the error analysis file which compares the output of the model with the gold annotation, and reports all the errors
+- `./${domain}/eval/1.results`: short file in CSV form containing accuracy
+- `./${domain}/eval/1.debug`: the error analysis file which compares the output of the model with the gold annotation, and reports all the errors
 
 See [instructions/eval-metrics.md](instructions/eval-metrics.md) for details of these files.
 
 Note: to reduce cost and time, we generate a relatively small dataset (10K~20K examples) in this homework and train for only 10K iterations. In practice, we can synthesize a much larger dataset and train for more iterations, which will give us a few percent of improvement on accuracy. 
 
-## Question Answering with Your Model
-Now it's time to test your model for real. 
+## Talk to Your Model
+Now it's time to test your model for real. You will start a web interface to talk to your model directly. 
+
 Run the following command to start a server that will continuously run the trained model in inference mode:
 ```bash
 ./run-nlu-server.sh --domain ${domain} --nlu_model 1
