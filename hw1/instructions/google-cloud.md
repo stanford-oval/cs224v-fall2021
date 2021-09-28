@@ -17,7 +17,6 @@ Adopted from [CS231N's Tutorial](https://github.com/cs231n/gcloud)
     - [Why don't I See Any GPU-related Quotas](#why-dont-i-see-any-gpu-related-quotas)
   - [Set Up a Google Cloud Virtual Machine](#set-up-a-google-cloud-virtual-machine)
     - [Customize VM Hardware](#customize-vm-hardware)
-    - [Configure Networking](#configure-networking)
   - [Access Your Newly Created VM](#access-your-newly-created-vm)
     - [Install gcloud command-line Tools](#install-gcloud-command-line-tools)
     - [Alternatives to the `gcloud` command](#alternatives-to-the-gcloud-command)
@@ -156,24 +155,7 @@ You can always change number of CPUs, number of GPUs, CPU memory, and GPU type a
 Just stop your instance, go to your VM instance's details at *Compute Engine > VM instances* > [click on instance name]. 
 Click *Edit* on your VM's page to modify the settings. Finally click *Save*.
 
-Wait until the deployment is finished. You should see a running VM with a green checkmark next to it on your [Compute Engine page](https://console.cloud.google.com/compute/). **Stop the instance now** - we need to change a few more settings. 
-
-### Configure Networking
-
-You need to tweak a few more settings to enable remote access to Tensorboard plots on your VM.
-
-1. You must stop the instance first.
-2. Go to [Firewall config page](https://console.cloud.google.com/networking/firewalls).
-3. Click *CREATE FIREWALL RULE*
-4. Give it an arbitrary name, such as `tensorboard`.
-5. In `Targets` field, select `All instances in the network`.
-6. In `Source IP ranges`, enter `0.0.0.0/0`.
-7. In `Protocols and ports` field, select *Specified protocols and ports*. Then check `tcp` and `udp` and enter `6006, 3000`. `6006` is the default port for Tensorboard, and `3000` is the default port for Almond server.
-8. Click the blue button `Create`. You should see a page similar to this:
-
-<center><img src="img/firewall.png" width="600"></center>
-
-9. Start your instance on the Compute Engine page.
+Wait until the deployment is finished. You should see a running VM with a green checkmark next to it on your [Compute Engine page](https://console.cloud.google.com/compute/). Your instance will be started immediately after the deployment. **Stop the instance now**.
 
 ## Access Your Newly Created VM 
 
@@ -197,7 +179,7 @@ See [this page](https://cloud.google.com/compute/docs/instances/connecting-to-in
 ### Alternatives to the `gcloud` command
 1. You can use your favorite terminal to ssh to your VMs. See [thir-party tools documentation](https://cloud.google.com/compute/docs/instances/connecting-advanced#thirdpartytools) for details.
 
-2. An easier alternative is to select *open in browser window*. However, you will not be able to transfer files between your computer and your VM.
+2. An easier alternative is to select *open in browser window*. However, you will not be able to transfer files or do port forwarding between your computer and your VM.
 
 
 
