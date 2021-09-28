@@ -47,8 +47,8 @@ synthetic_flags ?= \
 	schema_org \
 	filter_join \
 	no_stream
-annotate_with_entity_id = true
-generate_flags = $(foreach v,$(synthetic_flags),--set-flag $(v)) $(if $(annotate_with_entity_id),--set-flag entity_id,)
+annotate_with_entity_id =
+generate_flags = $(foreach v,$(synthetic_flags),--set-flag $(v)) --set-flag entity_id
 custom_generate_flags ?=
 pruning_size ?= 25
 mindepth ?= 6
