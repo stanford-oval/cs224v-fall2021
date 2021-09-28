@@ -48,7 +48,8 @@ synthetic_flags ?= \
 	filter_join \
 	no_stream
 annotate_with_entity_id =
-generate_flags = $(foreach v,$(synthetic_flags),--set-flag $(v)) --set-flag entity_id
+soft_match_id = 
+generate_flags = $(foreach v,$(synthetic_flags),--set-flag $(v)) $(if $(soft_match_id),,--set-flag no-soft_match_id)
 custom_generate_flags ?=
 pruning_size ?= 25
 mindepth ?= 6
@@ -206,7 +207,8 @@ $(experiment)/csqa-train.tsv: $(experiment)/wikidata.tt $(csqa_dir)/train $(wiki
 	  --values $(experiment)/values.json \
 	  --types $(experiment)/types.json \
 	  --filtered-examples $(experiment)/train.json \
-	  $(if $(annotate_with_entity_id),--entity-id,)
+	  $(if $(annotate_with_entity_id),--entity-id,) \
+	  $(if $(soft_match_id),--soft-match-id,) \
 
 $(experiment)/csqa-train-typechecked.tsv: $(experiment)/wikidata.tt $(experiment)/csqa-train.tsv
 	$(genie) typecheck \
@@ -242,7 +244,8 @@ $(experiment)/csqa-valid.tsv: $(experiment)/wikidata.tt $(csqa_dir)/valid $(wiki
 	  --types $(experiment)/types.json \
 	  --filtered-examples $(experiment)/valid.json \
 	  $(if $(csqa_filter),--filter $(csqa_filter),) \
-	  $(if $(annotate_with_entity_id),--entity-id,)
+	  $(if $(annotate_with_entity_id),--entity-id,) \
+	  $(if $(soft_match_id),--soft-match-id,) \
 
 $(experiment)/csqa-valid-typechecked.tsv: $(experiment)/wikidata.tt $(experiment)/csqa-valid.tsv
 	$(genie) typecheck \
@@ -296,6 +299,7 @@ evaluate: $(experiment)/models/${model}/best.pth $(experiment)/$(eval_set)/annot
 	  --csv \
 	  --min-complexity 1 \
 	  --max-complexity 3 \
+	  $(if $(annotate_with_entity_id),--entity-id,--no-entity-id) \
 	  -o $(experiment)/$(eval_set)/$(model).results.tmp | tee $(experiment)/$(eval_set)/$(model).debug
 	mv $(experiment)/$(eval_set)/$(model).results.tmp $(experiment)/$(eval_set)/$(model).results
 
