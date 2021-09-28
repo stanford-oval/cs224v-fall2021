@@ -35,7 +35,7 @@ We will also convert [CSQA dataset](https://amritasaha1812.github.io/CSQA/) part
 
 Sign up for a domain [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKPKvCtNV9kYschN7cnlKt03az9k3zSASa9tw/edit?usp=sharing) (using your Stanford email account), and edit the Makefile to set `experiment` to the domain you signed up at line 8 as follows:
 ```make
-experiment ?= *domain*
+experiment ?= _domain_
 ```
 Make sure the domain name is **lower cased**. 
 
