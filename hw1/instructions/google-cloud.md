@@ -29,7 +29,7 @@ Adopted from [CS231N's Tutorial](https://github.com/cs231n/gcloud)
 ## Overview 
 
 For your homework and potentially your class project, we recommend setting up virtual machines on Google Cloud Platform (GCP).
-This tutorial lists the necessary steps of working with Google Cloud. **We expect this tutorial to take up to an hour. Don't get intimidated by the steps, we tried to make the tutorial detailed so that you are less likely to get stuck on a particular step. Please ask your questions on the Almond community forum.**
+This tutorial lists the necessary steps of working with Google Cloud. **We expect this tutorial to take up to an hour. Don't get intimidated by the steps, we tried to make the tutorial detailed so that you are less likely to get stuck on a particular step. Please ask your questions on Piazza.**
 
 ### IMPORTANT: Make sure you stop your instances!
 
