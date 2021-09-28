@@ -3,19 +3,24 @@
 In this homework, you will learn to use Genie and build a question-answering skill for a [Wikidata](https://www.wikidata.org) domain of your choice. 
 
 We want all students to have hands-on experience in training a large neural network.  (No prior knowledge in machine learning is assumed.)  
-Since both data synthesis and training are computation-intensive, running each command once may take about 3 hours.
+
+Since both data synthesis and training are computation-intensive, running each command once may take about 1-2 hours.
 **Please start early and budget your time accordingly!**
 
 ## Setup 
 
 ### Google Cloud Platform
 This homework requires access to significant computing resources. We recommend running **all steps** in Google Cloud Platform. All students should have received a Google Cloud Platform coupon for this class via email. The email includes instructions to redeem your coupon and apply it to your personal GCP account.
-**Follow this detailed [instruction](./instructions/google-cloud.md) to setup your VM.**
+
+Once you have redeemed your coupon, **follow this detailed [instruction](./instructions/google-cloud.md) to setup your VM.**
 
 You will be responsible for creating and managing (starting, stopping) the VM instances used by this homework. You will be billed while the instances are running (and you will be responsible for charges beyond the coupon), so make sure you **turn off any VM instance you are not using**.
 
-### Install Libraries and Dependencies 
+### Install Libraries and Dependencies
 To install the libraries and dependencies needed, clone this repository and run the following command (takes about 3 minutes)
+
+**Again, we strongly recommend doing this on the Google Cloud Platform!**
+
 ```bash
 git clone https://github.com/stanford-oval/cs224v-fall2021.git
 cd cs224v-fall2021/hw1
@@ -28,9 +33,9 @@ Since both the synthesis and training take a long time to finish, we **highly re
 Our first step is to pick a domain and use Genie to synthesize training data for it.
 We will also convert [CSQA dataset](https://amritasaha1812.github.io/CSQA/) partially for few-shot training and validation.
 
-Sign up for a domain [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKPKvCtNV9kYschN7cnlKt03az9k3zSASa9tw/edit?usp=sharing), and edit the Makefile to set `experiment` to the domain you signed up at line 8 as follows:
+Sign up for a domain [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKPKvCtNV9kYschN7cnlKt03az9k3zSASa9tw/edit?usp=sharing) (using your Stanford email account), and edit the Makefile to set `experiment` to the domain you signed up at line 8 as follows:
 ```make
-experiment ?= ${domain} 
+experiment ?= *domain*
 ```
 Make sure the domain name is **lower cased**. 
 
