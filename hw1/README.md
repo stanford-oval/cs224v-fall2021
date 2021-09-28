@@ -22,7 +22,7 @@ cd cs224v-fall2021/hw1
 ./install.sh
 ```
 
-Since both the synthesis and training take a long time to finish, we recommend running everything using a terminal multiplexer such as [screen](https://www.gnu.org/software/screen/) and [tmux](https://github.com/tmux/tmux/wiki). A cheatsheet for use them can be found [here](./instructions/multiplexers.md). 
+Since both the synthesis and training take a long time to finish, we **highly recommend** running everything using a terminal multiplexer such as [screen](https://www.gnu.org/software/screen/) and [tmux](https://github.com/tmux/tmux/wiki) to avoid potential lost of progress due to disconnction. A cheatsheet for use them can be found [here](./instructions/multiplexers.md). 
 
 ## Data Synthesis
 Our first step is to pick a domain and use Genie to synthesize training data for it.
