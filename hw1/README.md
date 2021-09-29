@@ -104,6 +104,6 @@ You can now ask questions to your model at http://127.0.0.1:3000. Follow the con
 ## Submission
 Each student should submit a text file and include the following: 
 - The domain you chose
-- The accuracy of your model 
-- At least five commands you've tried with the nlu server log (copy from the tab you ran `run-nlu-server.sh`). 
+- The accuracy of your model (from `./${domain}/eval/1.results`)
+- At least five commands you've tried with the almond server log (copy from the tab running `run-almond.sh`). 
 
