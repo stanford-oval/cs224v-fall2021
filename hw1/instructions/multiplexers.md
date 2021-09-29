@@ -18,6 +18,6 @@ A cheatsheet for the minimum commands needed to use some terminal multiplexers.
 - Detach from the current session (without shut id down): `Ctrl + b` first, then press `d`
 - List all sessions: `tmux ls`
 - Reattach (enter) last session: `tmux attach`
-- Reattach (enter) a session by name: `tmux attach -s ${session-name}
+- Reattach (enter) a session by name: `tmux attach -s ${session-name}`
 - Kill las session: `tmux kill-session`
 - Kill a session by name: `tmux kill-session -s ${session-name}` 
