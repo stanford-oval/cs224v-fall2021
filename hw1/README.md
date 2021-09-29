@@ -102,7 +102,7 @@ gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:
 You can now ask questions to your model at http://127.0.0.1:3000. Follow the configuration instructions, then click on Conversation to access the dialogue agent.
 
 ## Submission
-Each student should submit a text file and include the following: 
+Each student should submit a pdf file and include the following: 
 - The domain you chose
 - The accuracy of your model (from `./${domain}/eval/1.results`) and a screenshot of the tenserboard `almond/em/val` plot
 - At least five commands you've tried with the almond server log (copy from the tab running `run-almond.sh`). 
