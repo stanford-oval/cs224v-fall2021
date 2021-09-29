@@ -93,10 +93,10 @@ Run the following command to start a server that will continuously run the train
 
 Then in a separate tab/session, run:
 ```bash
-./run-almond.sh --domain <DOMAIN>
+./run-genie.sh --domain <DOMAIN>
 ```
 
-This will start an Almond server at port 3000. Similar to tensorboard, you can port forward it
+This will start a web Genie assistant at port 3000. Similar to tensorboard, you can port forward it
 by running the following command on your local PC:
 ```bash
 gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:3000
@@ -111,5 +111,5 @@ Hint: despite decent accuracy reported on artificial evaluation set, the agent i
 Each student should submit a pdf file and include the following: 
 - The domain you chose
 - The accuracy of your model (from `./<DOMAIN>/eval/1.results`) and a screenshot of the tenserboard `almond/em/val` plot
-- At least five commands you've tried with the almond server log (copy from the tab running `run-almond.sh`). 
+- At least five commands you've tried with their genie server log (copy from the tab running `run-genie.sh`). 
 
