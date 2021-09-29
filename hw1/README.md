@@ -35,7 +35,7 @@ We will also convert [CSQA dataset](https://amritasaha1812.github.io/CSQA/) part
 
 Sign up for a domain [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKPKvCtNV9kYschN7cnlKt03az9k3zSASa9tw/edit?usp=sharing) (using your Stanford email account), and edit the Makefile to set `experiment` to the domain you signed up at line 8 as follows:
 ```make
-experiment ?= ${domain} # replace "${domain}" with the domain you chose
+experiment ?= <YOUR_DOMAIN>
 ```
 Make sure the domain name is **lower cased**. 
 
@@ -46,14 +46,14 @@ make datadir
 The synthesis will take about 1 hour, depending on the domain. 
 
 It will generate 
-- the manifest, `${domain}/manifest.tt`, containing the schema of the domain, including entities involved, all properties, and their natural language annotations; 
-- a parameter dataset for augmentation, under `${domain}/parameter-dataset`; 
+- the manifest, `<DOMAIN>/manifest.tt`, containing the schema of the domain, including entities involved, all properties, and their natural language annotations; 
+- a parameter dataset for augmentation, under `<DOMAIN>/parameter-dataset`; 
 - a dataset in `datadir`, containing the training set composed of (1) synthetic data generated based on the manifest (2) 100 examples converted from CSQA training set, both augmented with the parameter datasets; and a valid/eval set, converted from CSQA dev set.
 
 Each column in the data files lists the ID of the example, the lowercased natural language utterance, and the gold ThingTalk program, respectively.
 Check the training set (`datadir/train.tsv`) and dev set (`datadir/valid.tsv`) to see how the synthesized training queries and evaluation queries look like.
 
-For the exact set of properties available for your domain, check the `manifest.tt` file. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out ${name} : ${type}`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in difference part of speech. For more details about the annotation syntax, check [Genie Annotation Reference](https://wiki.almond.stanford.edu/genie/annotations).
+For the exact set of properties available for your domain, check the `manifest.tt` file. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out <NAME> : <TYPE>`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in difference part of speech. For more details about the annotation syntax, check [Genie Annotation Reference](https://wiki.almond.stanford.edu/genie/annotations).
 
 **If you want to rerun this step, make sure to run `make clean` first. Otherwise, `make` will not regenerate files that already exist.**
 
@@ -63,7 +63,7 @@ With the data prepared, we can now start training using the following command
 make train
 ```
 This takes about 1 hour with V100/P100 GPU or 4 hours with K80.
-You can start a tensorboard with `tensorboard --logdir ${domain}/models` (replace `${domain}` with your domain name) to monitor the training. 
+You can start a tensorboard with `tensorboard --logdir <DOMAIN>/models` (replace `<DOMAIN>` with your domain name) to monitor the training. 
 Once tensorboard is running in the VM. Run the following command on your PC to port forward tensorboard:
 ```bash
 gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 6006:localhost:6006
@@ -76,8 +76,8 @@ To check the accuracy of the trained model over the evaluation set of CSQA, run
 make evaluate
 ```
 After the evaluation finishes, you will have two files:
-- `./${domain}/eval/1.results`: short file in CSV form containing accuracy
-- `./${domain}/eval/1.debug`: the error analysis file which compares the output of the model with the gold annotation, and reports all the errors
+- `./<DOMAIN>/eval/1.results`: short file in CSV form containing accuracy
+- `./<DOMAIN>/eval/1.debug`: the error analysis file which compares the output of the model with the gold annotation, and reports all the errors
 
 See [instructions/eval-metrics.md](instructions/eval-metrics.md) for details of these files.
 
@@ -88,12 +88,12 @@ Now it's time to test your model for real. You will start a web interface to tal
 
 Run the following command to start a server that will continuously run the trained model in inference mode:
 ```bash
-./run-nlu-server.sh --domain ${domain} --nlu_model 1
+./run-nlu-server.sh --domain <DOMAIN> --nlu_model 1
 ```
 
 Then in a separate tab/session, run:
 ```bash
-./run-almond.sh --domain ${domain}
+./run-almond.sh --domain <DOMAIN>
 ```
 
 This will start an Almond server at port 3000. Similar to tensorboard, you can port forward it
@@ -110,6 +110,6 @@ Hint: despite decent accuracy reported on artificial evaluation set, the agent i
 ## Submission
 Each student should submit a pdf file and include the following: 
 - The domain you chose
-- The accuracy of your model (from `./${domain}/eval/1.results`) and a screenshot of the tenserboard `almond/em/val` plot
+- The accuracy of your model (from `./<DOMAIN>/eval/1.results`) and a screenshot of the tenserboard `almond/em/val` plot
 - At least five commands you've tried with the almond server log (copy from the tab running `run-almond.sh`). 
 
