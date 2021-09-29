@@ -50,7 +50,10 @@ It will generate
 - a parameter dataset for augmentation, under `${domain}/parameter-dataset`; 
 - a dataset in `datadir`, containing the training set composed of (1) synthetic data generated based on the manifest (2) 100 examples converted from CSQA training set, both augmented with the parameter datasets; and a valid/eval set, converted from CSQA dev set.
 
-Check the manifest to learn about the available properties in your domain and check `datadir/train.tsv` to see how the synthesized training examples look like. 
+Each column in the data files lists the ID of the example, the lowercased natural language utterance, and the gold ThingTalk program, respectively.
+Check the training set (`datadir/train.tsv`) and dev set (`datadir/valid.tsv`) to see how the synthesized training queries and evaluation queries look like.
+
+For the exact set of properties available for your domain, check the `manifest.tt` file. Search for `list query` to locate the domain signature, and all properties are listed inside the parentheses in the format `out ${name} : ${type}`. Each of them is also annotated with `#_[canonical={}]` which includes how the property can be described in natural language in difference part of speech. For more details about the annotation syntax, check [Genie Annotation Reference](https://wiki.almond.stanford.edu/genie/annotations).
 
 **If you want to rerun this step, make sure to run `make clean` first. Otherwise, `make` will not regenerate files that already exist.**
 
@@ -100,6 +103,7 @@ gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:
 ```
 
 You can now ask questions to your model at http://127.0.0.1:3000. Follow the configuration instructions, then click on Conversation to access the dialogue agent.
+Note that the model can only answer questions with properties in scope. Refer to the evaluation dataset or the manifest for what are the available properties.
 
 ## Submission
 Each student should submit a pdf file and include the following: 
