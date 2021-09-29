@@ -105,6 +105,8 @@ gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:
 You can now ask questions to your model at http://127.0.0.1:3000. Follow the configuration instructions, then click on Conversation to access the dialogue agent.
 Note that the model can only answer questions with properties in scope. Refer to the evaluation dataset or the manifest for what are the available properties.
 
+Hint: despite decent accuracy reported on artificial evaluation set, the agent is very likely to perform poorly. 
+
 ## Submission
 Each student should submit a pdf file and include the following: 
 - The domain you chose
