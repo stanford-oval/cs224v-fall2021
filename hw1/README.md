@@ -33,7 +33,7 @@ Since both the synthesis and training take a long time to finish, we **highly re
 Our first step is to pick a domain and use Genie to synthesize training data for it.
 We will also convert [CSQA dataset](https://amritasaha1812.github.io/CSQA/) partially for few-shot training and validation.
 
-Sign up for a domain [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKPKvCtNV9kYschN7cnlKt03az9k3zSASa9tw/edit?usp=sharing) (using your Stanford email account), and edit the Makefile to set `experiment` to the domain you signed up at line 8 as follows:
+Sign up for a domain [here](https://docs.google.com/spreadsheets/d/1lZ_3EGYKPKvCtNV9kYschN7cnlKt03az9k3zSASa9tw/edit?usp=sharing) (using your Stanford email account). Each domain only has 5 slots maximum, so act quickly to secure the one you want to try. Edit the Makefile to set `experiment` to the domain you signed up at line 8 as follows:
 ```make
 experiment ?= <YOUR_DOMAIN>
 ```
