@@ -1,6 +1,6 @@
 # Google Cloud Setup and Tutorial
 
-Adopted from [CS231N's Tutorial](https://github.com/cs231n/gcloud)
+Adopted from [CS231N's tutorial](https://github.com/cs231n/gcloud) and [CS294S/W's tutorial](https://github.com/stanford-oval/cs294-homework-workdir/blob/master/hw2/instructions/google-cloud.md).
 
 
 # Table of contents
@@ -220,7 +220,6 @@ You can develop locally on your favorite editor, push to your branch on Github, 
 (git commit frequently is also one of [good Github practices](https://www.datree.io/resources/github-best-practices))
 
 Besides `gcloud compute scp`, another tool you can check out is [rsync](https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/) which can synchronize files and folders between your local machine and remote server.
-You can also use [Google Cloud Storage](https://cloud.google.com/compute/docs/disks/gcs-buckets) to store and transfer files between your 2 VMs.
 
 
 ## IMPORTANT REMINDER: Make sure you stop your instances! ##
