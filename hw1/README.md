@@ -19,7 +19,7 @@ You will be responsible for creating and managing (starting, stopping) the VM in
 ### Install Libraries and Dependencies
 To install the libraries and dependencies needed, clone this repository and run the following command (takes about 3 minutes)
 
-**Again, we strongly recommend doing this on the Google Cloud Platform!**
+**Again, we strongly recommend doing this on your VM via the gcloud command!**
 
 ```bash
 git clone https://github.com/stanford-oval/cs224v-fall2021.git
