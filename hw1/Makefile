@@ -76,7 +76,7 @@ train_nlu_flags ?= \
 	--override_question= 
 custom_train_nlu_flags ?=
 
-.PHONY: datadir train
+.PHONY: datadir train clean clean-synthesis
 .SECONDARY:
 
 common-words.txt:
@@ -308,3 +308,7 @@ clean:
 	rm -rf datadir
 	rm -rf $(experiment)
 	rm -rf domains.tsv bert-canonical-annotator-*.json paraphraser-in.tsv paraphraser-out.json
+
+clean-synthesis:
+	rm -rf datadir
+	rm -rf $(experiment)/synthetic*.tsv $(experiment)/augmented.tsv
