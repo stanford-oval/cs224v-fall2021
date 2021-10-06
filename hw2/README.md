@@ -4,7 +4,13 @@ In this homework, you will learn how to annotate properties for a Genie skill an
 
 ## Setup
 
-We will continue running all the experiment under directory `hw1`. Run `git pull` to get latest changes. 
+We will continue running all the experiment under directory `hw1`. Run the following on your GCP instance fo get the latest update of this repo:
+```bash
+cd cs224v-fall2021
+git stash # following the prompt to configure git if needed
+git pull
+git stash pop
+```
 
 ## Edit the Annotations in the Manifest
 
@@ -29,14 +35,12 @@ Once the manifest is uploaded, we can rerun the synthesis and training:
 # clean existing data 
 make clean-synthesis
 
-# rerun synthesis
-make datadir
-
-# rerun training
+# rerun synthesis and training
 make train model=2
 ```
 
-Note that by default the model name is set to `1`. **Do not** run `make train` without overriding the model name, otherwise it will over write the model trained in homework 1. 
+Note that `make train` will automatically rerun `make synthesis`. 
+By default the model name is set to `1`. **Do not** run `make train` without overriding the model name, otherwise it will over write the model trained in homework 1. 
 
 ## Evaluate 
 Similar to homework 1. Run the following command with model `2` to evaluate the new model.
