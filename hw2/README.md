@@ -1,10 +1,10 @@
 # Improve Your Agent With Manual Annotation
 
-In this homework, you will learn how to annotate properties for a Genie skill and improve your questions-answering skill built in the first homework. 
+In this homework, you will learn how to annotate properties for a Genie skill and improve your question-answering skill built in the first homework. 
 
 ## Setup
 
-We will continue running all the experiment under directory `hw1`. Run the following on your GCP instance fo get the latest update of this repo:
+We will continue running all the experiments under directory `hw1`. Run the following on your GCP instance to get the latest update of this repo:
 ```bash
 cd cs224v-fall2021
 git stash # following the prompt to configure git if needed
@@ -40,7 +40,7 @@ make train model=2
 ```
 
 Note that `make train` will automatically rerun `make synthesis`. 
-By default the model name is set to `1`. **Do not** run `make train` without overriding the model name, otherwise it will over write the model trained in homework 1. 
+By default the model name is set to `1`. **Do not** run `make train` without overriding the model name, otherwise it will overwrite the model trained in homework 1. 
 
 ## Evaluate 
 Similar to homework 1. Run the following command with model `2` to evaluate the new model.
@@ -54,14 +54,14 @@ How is your accuracy? Is it better than model 1?
 ## Compare Model 1 and 2 
 Follow the same instruction in homework 1 to start the almond server (set `--nlu_model 2` when starting the nlu server). Try the same commands you tested in homework 1. Is the model perform better now? 
 
-Pick 5 examples from eval set that are parsed correct in both homework 1 and 2, i.e., the ones in `eval/annotated.tsv` but not in `eval/1.debug` and `eval/2.debug`.
+Pick five examples from the eval set that are parsed correctly in both homework 1 and 2, i.e., the ones in `eval/annotated.tsv` but not in `eval/1.debug` and `eval/2.debug`.
 Try to paraphrase them, and test them on both model 1 and model 2. How are they performing? Which one is more robust?  
 
 ## Submission
 Each student should submit a pdf or text file with answers for the following questions, plus the `manifest.tt` file with your manual annotations.
 - The domain you chose
-- The accuracy of your new model, and how it compares with the the model in homework 1. 
+- The accuracy of your new model, and how it compares with the model in homework 1. 
 - The accuracy of the 5 commands you tested in homework 1. Is the new model better? 
-- The five commands you picked from eval set and your paraphrases for them. 
+- The five commands you picked from the eval set and your paraphrases for them. 
 - The accuracy of the 5 paraphrases for both model 1 and model 2 and how they compare.
-- What conclusion you can draw from the comparison?
+- What conclusion can you draw from the comparison?
