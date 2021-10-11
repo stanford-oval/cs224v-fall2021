@@ -26,7 +26,7 @@ Add **as many annotations as you can** in different parts of speech and correct 
 We **highly recommend** download the manifest locally via `scp` and upload it when it's ready. You can use your favorite editor locally and in the meanwhile, you can stop the VM instance to save cost. 
 ```bash
 # download 
-gcloud compute scp "<YOUR_VM_NAME>">:~/cs224v-fall2021/hw1/<"YOUR_DOMAIN">/manifest.tt ./
+gcloud compute scp "<YOUR_VM_NAME>":~/cs224v-fall2021/hw1/<"YOUR_DOMAIN">/manifest.tt ./
 # upload
 gcloud compute scp ./manifest.tt "<YOUR_VM_NAME>">:~/cs224v-fall2021/hw1/<"YOUR_DOMAIN">/
 ```
