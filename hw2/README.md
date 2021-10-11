@@ -28,7 +28,7 @@ We **highly recommend** download the manifest locally via `scp` and upload it wh
 # download 
 gcloud compute scp "<YOUR_VM_NAME>":~/cs224v-fall2021/hw1/<"YOUR_DOMAIN">/manifest.tt ./
 # upload
-gcloud compute scp ./manifest.tt "<YOUR_VM_NAME>">:~/cs224v-fall2021/hw1/<"YOUR_DOMAIN">/
+gcloud compute scp ./manifest.tt "<YOUR_VM_NAME>":~/cs224v-fall2021/hw1/<"YOUR_DOMAIN">/
 ```
 
 
