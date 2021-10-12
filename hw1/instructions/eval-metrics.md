@@ -4,6 +4,7 @@ After you train a model, you can add it to the Makefile and run `make evaluate` 
 the evaluation metrics. These metrics are stored in files ending in `.results` and `.debug`
 in the directory containing the evaluation set.
 
+## `.results`
 The `.results` file is a comma-separated file that looks like this:
 ```
 eval,all,1242,0.7584541062801933,0.7616747181964574,0.9500805152979066,0.9500805152979066,0.9500805152979066,0.9500805152979066
@@ -28,3 +29,16 @@ Each column of a row:
 - syntax accuracy
 
 
+## `.debug` 
+The `.debug` file is a tab-separated file with examples that the model parsed incorrectly. Each column of a row:
+- the ID of the example
+- the level of correctness
+  - `ok_without_param`: everything is correct but the parameter value(s)
+  - `ok_function`: the function is correct, but the operation could be wrong, such as property to project/filter
+  - `ok_device`: the device (skill) is correct; this is irrelevant for the homework as we only have one function for our wikidata skill
+  - `ok_num_function`: the number of function in thingtalk is correct; this is also irrelevant for the homework as it's only useful when we have complex questions with multiple functions involved.
+  - `ok_syntax`: the prediction is completely wrong, but at least it's valid thingtalk
+  - `wrong_syntax`: the prediction is not a valid thingtalk program
+- original utterance
+- gold thingtalk annotation
+- predicted thingtalk annotation
