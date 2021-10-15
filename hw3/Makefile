@@ -5,7 +5,7 @@ NULL =
 # dev or test
 eval_set ?= dev
 # model to train or evaluate
-model ?=
+model ?= 1
 
 devices ?= $(foreach d,$(wildcard */manifest.tt),$(patsubst %/manifest.tt,%,$(d)))
 pkgfiles = $(wildcard */package.json)
@@ -54,7 +54,8 @@ train_nlu_flags ?= \
 	--model TransformerSeq2Seq \
 	--pretrained_model $(train_pretrained_model) \
 	--warmup 20 --gradient_accumulation_steps 20 \
-	--preprocess_special_tokens
+	--preprocess_special_tokens \
+	--train_batch_tokens 1500 --val_batch_size 2000
 custom_train_nlu_flags ?=
 
 evalflags ?=
