@@ -29,10 +29,10 @@ synthetic_flags ?= \
 	undefined_filter \
 	$(NULL)
 
-target_pruning_size ?= 250
+target_pruning_size ?= 100
 minibatch_size ?= 1000
 target_size ?= 1
-subdatasets ?= 6
+subdatasets ?= 3
 subdataset_ids := $(shell seq 1 $(subdatasets))
 max_turns ?= 4
 max_depth ?= 8

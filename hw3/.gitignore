@@ -17,3 +17,5 @@ everything/synthetic-*.txt
 everything/train
 everything/dev
 everything/models
+
+*.tmp
