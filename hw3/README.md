@@ -44,8 +44,7 @@ point, you will collect the data by interacting with the agent while correcting 
 
 To annotate, run the following commands:
 ```
-genie interactive-annotate --thingpedia-dir . -nlu-model $usermodel --execution-mode real \
-   --output com.yelp/eval/train/annotated.txt --append
+./run-annotate.sh
 ```
 
 The command first waits for you to enter a command, at the `U:` prompt. The script parses the command and shows you a list of candidate
