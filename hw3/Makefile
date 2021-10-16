@@ -1,7 +1,3 @@
--include ./config.mk
-
-NULL =
-
 # dev or test
 eval_set ?= dev
 # model to train or evaluate
@@ -27,7 +23,6 @@ synthetic_flags ?= \
 	projection_with_filter \
 	schema_org \
 	undefined_filter \
-	$(NULL)
 
 target_pruning_size ?= 100
 minibatch_size ?= 1000
@@ -69,7 +64,6 @@ parallel ?= 7
 genie ?= node --experimental_worker --max_old_space_size=$(memsize) $(geniedir)/dist/tool/genie.js
 
 thingpedia_url ?= https://thingpedia.stanford.edu/thingpedia
-developer_key ?= 
 
 .PRECIOUS: %/node_modules
 .PHONY: all clean lint train-user evaluate
@@ -106,14 +100,13 @@ everything/database-map.tsv: $(wildcard $(addsuffix /database-map.tsv,$(devices)
 	if test -f $@ && cmp $@.tmp $@ ; then rm $@.tmp ; else mv $@.tmp $@ ; fi
 
 entities.json:
-	$(genie) download-entities --thingpedia-url $(thingpedia_url) --developer-key $(developer_key) -o $@
+	wget --no-verbose https://almond-static.stanford.edu/research/cs224v/hw3/$@ -O $@
 
 parameter-datasets.tsv:
-	$(genie) download-entity-values --thingpedia-url $(thingpedia_url) --developer-key $(developer_key) \
-	   --manifest $@.tmp --append-manifest -d parameter-datasets
-	$(genie) download-string-values --thingpedia-url $(thingpedia_url) --developer-key $(developer_key) \
-	   --manifest $@.tmp --append-manifest -d parameter-datasets
-	mv $@.tmp $@
+	wget --no-verbose https://almond-static.stanford.edu/research/cs224v/hw3/$@ -O $@
+	wget --no-verbose https://almond-static.stanford.edu/research/cs224v/hw3/parameter-datasets/tt:location.tsv -P parameter-datasets/
+	wget --no-verbose https://almond-static.stanford.edu/research/cs224v/hw3/parameter-datasets/org.openstreetmap:restaurant.tsv -P parameter-datasets/
+	wget --no-verbose https://almond-static.stanford.edu/research/cs224v/hw3/parameter-datasets/com.yelp:restaurant_cuisine.json -P parameter-datasets/
 
 .embeddings/paraphraser-bart:
 	mkdir -p .embeddings
