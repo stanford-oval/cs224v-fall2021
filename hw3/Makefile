@@ -110,7 +110,7 @@ parameter-datasets.tsv:
 
 .embeddings/paraphraser-bart:
 	mkdir -p .embeddings
-	wget -c --no-verbose https://almond-static.stanford.edu/test-data/paraphraser-bart.tar.xz
+	wget -c https://almond-static.stanford.edu/test-data/paraphraser-bart.tar.xz
 	tar -C .embeddings -xvf paraphraser-bart.tar.xz
 
 everything/synthetic-%.txt : $(schema_file) $(dataset_file) entities.json
@@ -239,8 +239,14 @@ everything/$(eval_set)/%.nlu.results: everything/models/%/best.pth everything/$(
 	mv $@.tmp $@
 
 download-baseline:
-	wget -c --no-verbose https://almond-static.stanford.edu/research/hw3/baseline.tar.xz
+	mkdir -p everything/models/baseline
+	wget -c https://almond-static.stanford.edu/research/cs224v/hw3/baseline.tar.xz
 	tar -C everything/models/baseline -xvf baseline.tar.xz
+
+download-agent:
+	mkdir -p everything/models/agent
+	wget -c https://almond-static.stanford.edu/research/cs224v/hw3/agent.tar.xz
+	tar -C everything/models/agent -xvf agent.tar.xz
 
 datadir/agent: everything/synthetic.agent.tsv everything/augmented.agent.tsv everything/dev/agent.tsv
 	mkdir -p $@

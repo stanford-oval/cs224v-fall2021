@@ -19,3 +19,4 @@ everything/dev
 everything/models
 
 *.tmp
+*.tar.xz
