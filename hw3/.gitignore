@@ -12,7 +12,7 @@ parameter-datasets.tsv
 datadir
 
 everything/*.tsv
-everything/*.tt
+everything/schema-*.tt
 everything/synthetic-*.txt
 everything/train
 everything/dev
