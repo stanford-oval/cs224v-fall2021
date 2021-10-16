@@ -238,6 +238,10 @@ everything/$(eval_set)/%.nlu.results: everything/models/%/best.pth everything/$(
 	mv everything/$(eval_set)/$*.nlu.debug.tmp everything/$(eval_set)/$*.nlu.debug
 	mv $@.tmp $@
 
+download-baseline:
+	wget -c --no-verbose https://almond-static.stanford.edu/research/hw3/baseline.tar.xz
+	tar -C everything/models/baseline -xvf baseline.tar.xz
+
 datadir/agent: everything/synthetic.agent.tsv everything/augmented.agent.tsv everything/dev/agent.tsv
 	mkdir -p $@
 	cp everything/synthetic.agent.tsv $@/

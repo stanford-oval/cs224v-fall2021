@@ -1,14 +1,37 @@
 # Homework 3: Improving dialogues
 
-In this homework, you will learn how to train dialogue models, and how to improve them using few-shot data.
+In this homework, you will learn how to train dialogue models and build an agent for searching restaurants. A baseline model is provided and we will improve it using few-shot data.
 
 ## Setup
+In `hw3` directory, run 
+```bash
+npm install
+```
 
-TODO
+## Part 1: Download Baseline Model and Test How it Performs. 
+Run the following command to download a baseline model trained with only synthetic data. 
+```bash
+make download-baseline
+```
 
-By the end of this part, you will have a working dialogue agent, using the models pretrained by the TAs.
+Then start your Genie assistant similar to homework 1:
+```bash
+# in gcloud
+./run-nlu-server.sh --nlu_model baseline
 
-## Part 1: Collecting Few-shot data
+# in a separate tab/session of gcloud
+./run-genie.sh
+
+# on your local machine 
+gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:3000
+```
+
+Now you can test the agent at http://127.0.0.1:3000. Try some contextual conversations with multiple turns. Save your server log. 
+
+How does the baseline model perform? Where does it fail? 
+
+
+## Part 2: Collecting Few-shot Data and Retrain
 
 In this part, you will collect your few-shot data to improve your model. There are two main approaches:
 WOZ, or interactive annotation. You will use WOZ in this homework.
@@ -103,3 +126,9 @@ of the form "cannot find entity", it means the user or agent is referring to an 
 not visible, either in the sentence or in the portion of the context visible to the NLU/NLG.
 
 Then you can train...
+
+
+## Part 3: Evaluation
+Follow the same steps in Part 1 (replace `baseline` to the model name of your new model, `1` by default) to run your agent with the new model. 
+
+Test it with the same dialogs failed in Part 1. Is it working now? Try some more dialogs. How does your new model perform? 
