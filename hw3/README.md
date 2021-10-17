@@ -70,6 +70,8 @@ agent utterance `A:` and agent target `AT:`. The first line in each dialogue tha
 of the dialogue; other lines starting with `#` are comments. You can edit the annotated.txt file to correct
 any mistake during interactive annotation.
 
+**In total, annotate at least 50 turns of conversation.** Otherwise it's not enough to fine tune the model and improve the accuracy.
+
 ### Step 2: Training
 
 The second step is to use the newly annotated data to improve the model.
