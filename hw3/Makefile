@@ -43,7 +43,10 @@ custom_gen_flags ?=
 
 train_iterations ?= 30000
 train_save_every ?= 2000
-train_log_every ?= 100
+train_log_every ?= 200
+finetune_iterations ?= 5000
+finetune_save_every ?= 500
+finetune_log_every ?= 100
 train_pretrained_model ?= facebook/bart-large
 train_nlu_flags ?= \
 	--model TransformerSeq2Seq \
@@ -330,6 +333,27 @@ train:
 	  --save_every $(train_save_every) \
 	  --log_every $(train_log_every) \
 	  --val_every $(train_save_every) \
+	  --exist_ok \
+	  --skip_cache \
+	  $(train_nlu_flags) \
+	  $(custom_train_nlu_flags)
+	  
+finetune:
+	mkdir -p everything/models/$(model)
+	-rm datadir/almond
+	ln -sf . datadir/almond
+	genienlp train \
+	  --no_commit \
+	  --data datadir/fewshot \
+	  --load everything/models/baseline \
+	  --save everything/models/$(model) \
+	  --tensorboard_dir everything/models/$(model) \
+	  --train_tasks almond_dialogue_nlu \
+	  --preserve_case \
+	  --train_iterations $(finetune_iterations) \
+	  --save_every $(finetune_save_every) \
+	  --log_every $(finetune_log_every) \
+	  --val_every $(finetune_save_every) \
 	  --exist_ok \
 	  --skip_cache \
 	  $(train_nlu_flags) \
