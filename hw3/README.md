@@ -26,7 +26,8 @@ Then start your Genie assistant similar to homework 1:
 gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:3000
 ```
 
-Now you can test the agent at http://127.0.0.1:3000. Try at least 5 contextual conversations with multiple turns. Save your server log. 
+Now you can test the agent at http://127.0.0.1:3000. 
+Try at least 5 contextual conversations with multiple turns. Save your server log. 
 
 How does the baseline model perform? Where does it fail? 
 
@@ -97,7 +98,7 @@ By default the model is named `1`, you can change the model name with the option
 
 ## Part 3: Evaluation
 Follow the same steps in Part 1 (replace `baseline` to the name of your new model) to run your agent again. 
-Test it with the same dialogs failed in Part 1. Is it working now? Try some more dialogs. How does your new model perform? 
+Test it with the same dialogs in Part 1. Is it working now? How does your new model perform? 
 
 Run the following command to evaluate both the baseline model and the fewshot model on a provided dev set (`com.yelp/eval/dev/annotated.txt`):
 ```bash
