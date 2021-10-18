@@ -37,16 +37,16 @@ given the output of the initial parser.
     The syntax has the ID of the restaurant, the notation `^^com.yelp:restaurant`, and the name of the
     restaurant in parenthesis. Leave `null` to have the system choose the right ID automatically.
 
-- Questions about a specific item that the agent just mentioned use `id ==`, even if the user is not
-  mentioning the name explicitly. In this case, you must copy right ID from the context.
-  
-  ```
-  A: I have Panda Express.
-  AT: $dialogue @org.thingpedia.dialogue.transaction.sys_recommend_one;
-  U: What's the address?
-  UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
-  UT: [geo] of @com.yelp.restaurant(), id == "panda-express-stanford-2"^^com.yelp:restaurant("panda express");
-  ```
+  - Questions about a specific item that the agent just mentioned use `id ==`, even if the user is not
+    mentioning the name explicitly. In this case, you must copy right ID from the context.
+    
+    ```
+    A: I have Panda Express.
+    AT: $dialogue @org.thingpedia.dialogue.transaction.sys_recommend_one;
+    U: What's the address?
+    UT: $dialogue @org.thingpedia.dialogue.transaction.execute;
+    UT: [geo] of @com.yelp.restaurant(), id == "panda-express-stanford-2"^^com.yelp:restaurant("panda express");
+    ```
 
 - You should carry over all the filter clauses that the user has mentioned, even when the user chooses
   a specific restaurant. Example:

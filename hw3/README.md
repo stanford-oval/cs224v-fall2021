@@ -60,6 +60,7 @@ Disregard that, or edit it to make it a valid dialogue state.
 After you enter the user state, the commands you entered are executed, and the dialogue context is shown, prefixed
 by `C:`. Then the agent replies, prefixed by `A:`. You can then enter another command to continue the dialogue, or
 type `d` to terminate the current dialogue and start the next one.
+**Only terminated dialogue will be saved. Make sure you type `d` after your last turn of each dialogue!**
 
 If a particular turn is not representable in ThingTalk, you can discard that turn by typing `d` followed by a short phrase indicating the reason.
 
