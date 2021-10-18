@@ -340,13 +340,14 @@ train:
 	  
 finetune:
 	mkdir -p everything/models/$(model)
-	-rm datadir/almond
-	ln -sf . datadir/almond
+	rsync -a everything/models/baseline/ everything/models/${model} --exclude "*.log" --exclude "iteration_*.pth"
+	-rm datadir/fewshot/almond
+	ln -sf . datadir/fewshot/almond
 	genienlp train \
 	  --no_commit \
 	  --data datadir/fewshot \
-	  --load everything/models/baseline \
 	  --save everything/models/$(model) \
+	  --load best.pth \
 	  --tensorboard_dir everything/models/$(model) \
 	  --train_tasks almond_dialogue_nlu \
 	  --preserve_case \
