@@ -108,6 +108,7 @@ make model=baseline evaluate
 # evaluate the few shot model
 make model=<YOUR_MODEL_NAME> evaluate
 ```
+This will take a couple of minutes, wait patiently until the evaluation finishes.
 
 You will get `.nlu.results` and `.dialogue.results` files for both models under `./everything/dev/`.
 `.nlu.results` shows the turn-by-turn accuracy. It has a [similar format](../hw1/instructions/eval-metrics.md) as what we have for single-turn results in homework 1 and 2. 
