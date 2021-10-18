@@ -8,7 +8,7 @@ In `hw3` directory, run
 npm install
 ```
 
-## Part 1: Download Baseline Model and Test How it Performs. 
+## Part 1: Download the Baseline Model and Test How it Performs
 Run the following command to download a baseline model trained with only synthetic data. 
 ```bash
 make download-baseline
@@ -26,7 +26,7 @@ Then start your Genie assistant similar to homework 1:
 gcloud compute ssh --zone "<YOUR_ZONE>" "<YOUR_VM_NAME>" -- -NfL 3000:localhost:3000
 ```
 
-Now you can test the agent at http://127.0.0.1:3000. Try some contextual conversations with multiple turns. Save your server log. 
+Now you can test the agent at http://127.0.0.1:3000. Try at least 5 contextual conversations with multiple turns. Save your server log. 
 
 How does the baseline model perform? Where does it fail? 
 
@@ -99,3 +99,34 @@ By default the model is named `1`, you can change the model name with the option
 Follow the same steps in Part 1 (replace `baseline` to the name of your new model) to run your agent again. 
 Test it with the same dialogs failed in Part 1. Is it working now? Try some more dialogs. How does your new model perform? 
 
+Run the following command to evaluate both the baseline model and the fewshot model on a provided dev set (`com.yelp/eval/dev/annotated.txt`):
+```bash
+# evaluate the baseline model
+make model=baseline evaluate
+
+# evaluate the few shot model
+make model=<YOUR_MODEL_NAME> evaluate
+```
+
+You will get `.nlu.results` and `.dialogue.results` files for both models under `./everything/dev/`.
+`.nlu.results` shows the turn-by-turn accuracy. It has a [similar format](../hw1/instructions/eval-metrics.md) as what we have for single-turn results in homework 1 and 2. 
+`.dialogue.results` shows more dialogue metrics. Each column shows 
+- the name of the evaluation set
+- number of dialogues 
+- number of turns
+- complete dialogue accuracy (exact match, slot only)
+- first turn accuracy (exact match, slot only)
+- turn-by-turn accuracy (exact match, slot only)
+- up-to-error accuracy (exact match, slot only)
+- time to first error (exact match, slot only)
+
+Please refer to [this page](https://wiki.almond.stanford.edu/genie/evaluation#dialogue-evaluation) for more details.
+
+How does the two models compare when evaluating on the dev set? 
+
+## Submission
+Each student should submit your fewshot data (`com.yelp/eval/train/annotated.txt`) and evaluation result files for your fewshot model (`.nlu.results`, `.nlu.debug`, `.dialogue.debug`, `.dialogue.results`), 
+as well as a pdf or text file with the following: 
+- The conversations you tested on the baseline model and its server log.
+- The server log of the same questions on the fewshot model.  
+- An analysis of the performance comparison between the baseline model and fewshot model on (1) your own conversations (2) the provided dev set.
