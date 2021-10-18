@@ -122,7 +122,7 @@ You will get `.nlu.results` and `.dialogue.results` files for both models under 
 
 Please refer to [this page](https://wiki.almond.stanford.edu/genie/evaluation#dialogue-evaluation) for more details.
 
-How does the two models compare when evaluating on the dev set? 
+How do the two models compare when evaluating on the dev set? 
 
 ## Submission
 Each student should submit your fewshot data (`com.yelp/eval/train/annotated.txt`) and evaluation result files for your fewshot model (`.nlu.results`, `.nlu.debug`, `.dialogue.debug`, `.dialogue.results`), 
