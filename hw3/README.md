@@ -70,7 +70,10 @@ agent utterance `A:` and agent target `AT:`. The first line in each dialogue tha
 of the dialogue; other lines starting with `#` are comments. You can edit the annotated.txt file to correct
 any mistake during interactive annotation.
 
-**In total, annotate at least 50 turns of conversation.** Otherwise it's not enough to fine tune the model and improve the accuracy.
+**In total, annotate at least 50 turns of conversation.** Otherwise it's not enough to fine tune the model and improve the accuracy.'
+
+This step is not computational demanding. Depending on your Google Cloud credit left, you might want to run this step on your local machine. 
+Clone this repo and follow the same setup step. In addition, install genienlp with `pip3 install genienlp`. Then you can follow the same step to download the baseline model and run annotation. 
 
 ### Step 2: Training
 
