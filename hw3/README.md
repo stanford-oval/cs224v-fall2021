@@ -1,4 +1,4 @@
-# Homework 3: Improving dialogues
+# Homework 3: Build A Conversational Restaurant Agent
 
 In this homework, you will learn how to train dialogue models and build an agent for searching restaurants. A baseline model is provided and we will improve it using few-shot data.
 
