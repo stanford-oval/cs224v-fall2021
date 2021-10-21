@@ -8,7 +8,7 @@ In `hw3` directory, run
 npm install
 ```
 
-(You might have to `git add .`, `git stash`, and `git pull` to access the `hw3` files)
+Note: You will be doing this from your GCP instance, just like in HW1 and HW2. In order to get the latest update of the repo, you might have to `git add .`, `git stash`, and `git pull`)
 
 ## Part 1: Download the Baseline Model and Test How it Performs
 Run the following command to download a baseline model trained with only synthetic data. 
