@@ -8,6 +8,8 @@ In `hw3` directory, run
 npm install
 ```
 
+(You might have to `git add .`, `git stash`, and `git pull` to access the `hw3` files)
+
 ## Part 1: Download the Baseline Model and Test How it Performs
 Run the following command to download a baseline model trained with only synthetic data. 
 ```bash
