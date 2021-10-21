@@ -36,7 +36,7 @@ How does the baseline model perform? Where does it fail?
 
 ## Part 2: Improving the Model With Few-Shot
 
-In this part, you will collect your few-shot data to improve your model. 
+In this part, you will collect your few-shot data to improve your model. We highly recommend you read through all the annotation instructions and guides before starting your annotations.
 
 ### Step 1: Data Collection and Annotation
 
@@ -77,7 +77,7 @@ any mistake during interactive annotation.
 **In total, annotate at least 50 turns of conversation.** Otherwise it's not enough to fine tune the model and improve the accuracy.'
 
 This step is not computational demanding. Depending on your Google Cloud credit left, you might want to run this step on your local machine. 
-Clone this repo and follow the same setup step. In addition, install genienlp with `pip3 install genienlp`. Then you can follow the same step to download the baseline model and run annotation. 
+Clone this repo and follow the same setup steps given above. In addition, install genienlp with `pip3 install genienlp`. Then you can follow the same step to download the baseline model and run annotation. 
 
 ### Step 2: Training
 
