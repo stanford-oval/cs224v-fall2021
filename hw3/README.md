@@ -54,7 +54,8 @@ Most of the time, the list will contain exactly one item, some times it will con
 select an item from a list.  You can type `e` followed by a number (e.g. `e 1`) to edit an item in the list.
 Alternatively, you can type the ThingTalk code directly.
 
-You must make sure you type complete dialogue states (including the `$dialogue` prefix and dialogue act) at every turn.
+You must make sure you type complete dialogue states (including the `$dialogue` prefix and dialogue act) at every turn. 
+Line breaks are not permitted, so if the model outputs multiple statements you should combine them into one line.
 Check the [annotation guide](./annotation-guide.md) for more detailed instructions. 
 Note that sometimes the tool might give you an option in the list that is not a valid dialogue state.
 Disregard that, or edit it to make it a valid dialogue state.
